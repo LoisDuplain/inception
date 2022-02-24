@@ -3,24 +3,24 @@ SRCS	=	srcs/docker-compose.yml
 all:	up
 
 up:
-	mkdir -p /home/lduplain/data/mariadb
-	mkdir -p /home/lduplain/data/wordpress
-	docker-compose -f $(SRCS) up --build -d
+	sudo mkdir -p /home/lduplain/data/mariadb
+	sudo mkdir -p /home/lduplain/data/wordpress
+	sudo docker-compose -f $(SRCS) up --build -d
 down:
-	docker-compose -f $(SRCS) down
+	sudo docker-compose -f $(SRCS) down
 
 ps:
-	docker-compose -f $(SRCS) ps
+	sudo docker-compose -f $(SRCS) ps
 
 top:
-	docker-compose -f $(SRCS) top
+	sudo docker-compose -f $(SRCS) top
 clean:
-	docker-compose -f $(SRCS) down --rmi all -v
+	sudo docker-compose -f $(SRCS) down --rmi all -v
 fclean:
-	docker-compose -f $(SRCS) down --rmi all -v
-	rm -rf /home/lduplain/data/
+	sudo docker-compose -f $(SRCS) down --rmi all -v
+	sudo rm -rf /home/lduplain/data/
 
 prune:	fclean
-	docker system prune -f --all --volumes
+	sudo docker system prune -f --all --volumes
 
 .PHONY:	all up down ps top clean fclean prune
