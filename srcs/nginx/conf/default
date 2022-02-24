@@ -21,7 +21,6 @@ server {
 			fastcgi_index index.php; # give index name for params
 			include fastcgi_params; # let use fast cgi params
 			
-			# SCRIPT_FILENAME would equal /Users/loisduplain/Desktop/inception-volumes/www/scripts/php/info/index.php
 			fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 			fastcgi_param PATH_INFO $fastcgi_path_info;
 		}
