@@ -31,8 +31,6 @@ services:
       - inception
     ports:
       - "443:443"
-      - "8080:8080"
-      - "80:80"
     depends_on:
       wordpress:
         condition: service_started
@@ -54,8 +52,6 @@ services:
       - wordpress:/var/www/wordpress
     networks:
       - inception
-    ports:
-      - "9000:9000"
 #    depends_on:
 #      mariadb:
 #        condition: service_started
