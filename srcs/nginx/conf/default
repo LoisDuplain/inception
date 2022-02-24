@@ -2,7 +2,7 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
 
-	server_name lduplain.42.fr;
+	server_name localhost;
 
 	ssl_certificate_key /etc/ssl/nginx-selfsigned.key;
 	ssl_certificate /etc/ssl/nginx-selfsigned.crt;
@@ -15,7 +15,7 @@ server {
 		try_files $uri $uri/ /index.php$is_args$args;
 	}
 	location ~ [^/]\.php(/|$) { 
-			try_files $uri =404;
+			try_files $uri = 404;
 			fastcgi_split_path_info ^(.+\.php)(/.+)$;
 			fastcgi_pass wordpress:9000;
 			fastcgi_index index.php; # give index name for params
