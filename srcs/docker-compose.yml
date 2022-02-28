@@ -1,24 +1,21 @@
 version: '3'
 
 services:
-#  mariadb:
-#    image: mariadb
-#    env_file: .env
-#    build:
-#      context: ./mariadb # build repo
-#      args:
-#        MARIADB_USER: ${MARIADB_USER}
-#        MARIADB_U_PASS: ${MARIADB_U_PASS}
-#        MARIADB_SP_USER: ${MARIADB_SP_USER}
-#        MARIADB_ROOT_PASS: ${MARIADB_ROOT_PASS}
-#        MARIADB_WP: ${MARIADB_WP}
-#        MARIADB_HOSTNAME: ${MARIADB_HOSTNAME}
-#    container_name: mariadb # give specified name instead of a default name
-#    restart: on-failure # restart only if failed
-#    volumes: #volume_name:/path/...
-#      - mariadb:/var/lib/mysql
-#    networks: #network name from which the service will be part of
-#      - inception
+  mariadb:
+    image: mariadb
+    env_file: .env
+    build:
+      context: ./mariadb
+      args:
+        DB_DB: ${DB_DB}
+        DB_USER: ${DB_USER}
+        DB_PASS: ${DB_PASS}
+    container_name: mariadb
+    restart: on-failure
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
 
   nginx:
     image: nginx
@@ -37,24 +34,17 @@ services:
 
   wordpress:
     image: wordpress
+    env_file: .env
     build: ./wordpress
     container_name: wordpress
     restart: on-failure
-    env_file: .env
-    environment:
-      - MARIADB_USER=${MARIADB_USER}
-      - MARIADB_U_PASS=${MARIADB_U_PASS}
-      - MARIADB_SP_USER=${MARIADB_SP_USER}
-      - MARIADB_ROOT_PASS=${MARIADB_ROOT_PASS}
-      - MARIADB_WP=${MARIADB_WP}
-      - MARIADB_HOSTNAME=${MARIADB_HOSTNAME}
     volumes:
       - wordpress:/var/www/wordpress
     networks:
       - inception
-#    depends_on:
-#      mariadb:
-#        condition: service_started
+    depends_on:
+      mariadb:
+        condition: service_started
 
 networks:
   inception:
