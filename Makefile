@@ -3,8 +3,8 @@ SRCS	=	srcs/docker-compose.yml
 all:	up
 
 up:
-	mkdir -p /Users/lduplain/Desktop/inception/data/mariadb
-	mkdir -p /Users/lduplain/Desktop/inception/data/wordpress
+	mkdir -p /home/lduplain/data/mariadb
+	mkdir -p /home/lduplain/data/wordpress
 	docker-compose -f $(SRCS) up --build -d
 down:
 	docker-compose -f $(SRCS) down
@@ -18,7 +18,7 @@ clean:
 	docker-compose -f $(SRCS) down --rmi all -v
 fclean:
 	docker-compose -f $(SRCS) down --rmi all -v
-	rm -rf /Users/lduplain/Desktop/inception/data/
+	rm -rf /home/lduplain/data/
 
 prune:	fclean
 	docker system prune -f --all --volumes

@@ -54,10 +54,10 @@ volumes:
   mariadb:
     driver_opts:
       type: none
-      device: /Users/lduplain/Desktop/inception/data/mariadb
+      device: /home/lduplain/data/mariadb
       o: bind
   wordpress:
     driver_opts:
       type: none
-      device: /Users/lduplain/Desktop/inception/data/wordpress
+      device: /home/lduplain/data/wordpress
       o: bind
